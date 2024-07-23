@@ -3,7 +3,7 @@ const foodLog = document.getElementById('foodLog');
 const goodFoodButtons = document.getElementById('goodFoodButtons');
 const badFoodButtons = document.getElementById('badFoodButtons');
 
-const goodFoods = ['Banana', 'Beans', 'Water', 'Coffee', 'Nuts', 'Chicken', 'Steak','Pork', 'Good Sleep', 'Sunlight', 'Run', 'Productive', 'Social', 'Paw', 'Fun Todo', 'Weightloss', 'Walk', 'Nap', 'Beer', 'Insight', 'Flow', 'Sec', 'Challenged', 'Lawn', 'Full', 'Tabasco', 'Cleaning', 'Problem Solving', 'Out', 'Positive Thoughts'];
+const goodFoods = ['Banana', 'Beans', 'Water', 'Coffee', 'Eggs', 'Yogurt', 'Pickles', 'Nuts', 'Chicken', 'Steak','Pork', 'Good Sleep', 'Sunlight', 'Run', 'Productive', 'Social', 'Paw', 'Fun Todo', 'Weightloss', 'Walk', 'Nap', 'Beer', 'Insight', 'Flow', 'Sec', 'Challenged', 'Lawn', 'Full', 'Tabasco', 'Cleaning', 'Problem Solving', 'Out', 'Positive Thoughts', 'Massive Storm', 'Sport Team Winning'];
 const badFoods = ['Starting Level','Chocolate', 'Soda', 'Fast food', 'Bad Sleep', 'Hungry', 'Conflict', 'Work-Stress', 'No Social', 'Thirsty', 'Sick', 'Hangover', 'Negative Thoughts', 'Unchallenged', 'Sitting', 'TV', 'Missed Coffee', 'Sleepy'];
 
 // Create buttons for each food item
