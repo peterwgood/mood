@@ -3,8 +3,8 @@ const foodLog = document.getElementById('foodLog');
 const goodFoodButtons = document.getElementById('goodFoodButtons');
 const badFoodButtons = document.getElementById('badFoodButtons');
 
-const goodFoods = ['banana', 'beans', 'water', 'coffee', 'nuts', 'chicken', 'steak','pork', 'good sleep', 'sunlight', 'run', 'productive', 'social', 'paw', 'Fun todo', 'weightloss', 'looking forward', 'nap', 'beer', 'insight', 'flow', 'sec', 'challenged', 'run', 'full', 'tabasco'];
-const badFoods = ['chocolate', 'soda', 'fast food', 'bad sleep', 'hungry', 'conflict', 'workstress', 'no social', 'thirsty', 'sick', 'hangover', 'wan', 'unchallenged', 'sitting', 'TV'];
+const goodFoods = ['Banana', 'Beans', 'Water', 'Coffee', 'Nuts', 'Chicken', 'Steak','Pork', 'Good Sleep', 'Sunlight', 'Run', 'Productive', 'Social', 'Paw', 'Fun Todo', 'Weightloss', 'Walk', 'Nap', 'Beer', 'Insight', 'Flow', 'Sec', 'Challenged', 'Lawn', 'Full', 'Tabasco', 'Clean'];
+const badFoods = ['Chocolate', 'Soda', 'Fast food', 'Bad Sleep', 'Hungry', 'Conflict', 'Work-Stress', 'No Social', 'Thirsty', 'Sick', 'Hangover', 'Wan', 'Unchallenged', 'Sitting', 'TV', 'Missed Coffee'];
 
 // Create buttons for each food item
 goodFoods.forEach(food => createButton(food, 'good', goodFoodButtons));
@@ -75,10 +75,10 @@ function addToLog(food, mood, save = true) {
 
 function addFoodEntry(food, mood) {
     if (goodFoods.includes(food)) {
-        addToLog(food, 'good');
+        addToLog(food, 'Pos');
         updateMoodColor(); // Update the mood chart color
     } else if (badFoods.includes(food)) {
-        addToLog(food, 'bad');
+        addToLog(food, 'Neg');
         updateMoodColor(); // Update the mood chart color
     } else {
         alert('Please enter a valid food item (good or bad).');
