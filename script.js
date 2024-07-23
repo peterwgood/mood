@@ -4,7 +4,7 @@ const goodFoodButtons = document.getElementById('goodFoodButtons');
 const badFoodButtons = document.getElementById('badFoodButtons');
 
 const goodFoods = ['Banana', 'Beans', 'Water', 'Coffee', 'Nuts', 'Chicken', 'Steak','Pork', 'Good Sleep', 'Sunlight', 'Run', 'Productive', 'Social', 'Paw', 'Fun Todo', 'Weightloss', 'Walk', 'Nap', 'Beer', 'Insight', 'Flow', 'Sec', 'Challenged', 'Lawn', 'Full', 'Tabasco', 'Clean'];
-const badFoods = ['Chocolate', 'Soda', 'Fast food', 'Bad Sleep', 'Hungry', 'Conflict', 'Work-Stress', 'No Social', 'Thirsty', 'Sick', 'Hangover', 'Wan', 'Unchallenged', 'Sitting', 'TV', 'Missed Coffee'];
+const badFoods = ['Chocolate', 'Soda', 'Fast food', 'Bad Sleep', 'Hungry', 'Conflict', 'Work-Stress', 'No Social', 'Thirsty', 'Sick', 'Hangover', 'Wan', 'Unchallenged', 'Sitting', 'TV', 'Missed Coffee', 'Sleepy'];
 
 // Create buttons for each food item
 goodFoods.forEach(food => createButton(food, 'good', goodFoodButtons));
@@ -26,9 +26,17 @@ function createButton(food, mood, container) {
 function updateMoodColor() {
     const totalGood = countFoods(goodFoods);
     const totalBad = countFoods(badFoods);
-    const averageColor = calculateAverageColor(totalGood, totalBad);
+    let averageColor;
+
+    if (totalGood === 0 && totalBad === 0) {
+        averageColor = { r: 255, g: 0, b: 0 }; // Red
+    } else {
+        averageColor = calculateAverageColor(totalGood, totalBad);
+    }
+
     moodChart.style.backgroundColor = `rgb(${averageColor.r}, ${averageColor.g}, ${averageColor.b})`;
 }
+
 
 function countFoods(foodArray) {
     const foodEntries = Array.from(foodLog.querySelectorAll('li'));
@@ -44,8 +52,9 @@ function countFoods(foodArray) {
 }
 
 function calculateAverageColor(totalGood, totalBad) {
-    const goodColor = { r: 0, g: 255, b: 0 }; // Green
+    
     const badColor = { r: 255, g: 0, b: 0 }; // Red
+	const goodColor = { r: 0, g: 255, b: 0 }; // Green
 
     const averageColor = {
         r: Math.round((goodColor.r * totalGood + badColor.r * totalBad) / (totalGood + totalBad)),
