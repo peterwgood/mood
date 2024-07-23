@@ -1,0 +1,19 @@
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f5f5f5;
+}
+
+h1 {
+    color: #333;
+}
+
+.mood-chart {
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+    border-radius: 50%;
+    background-color: #00ff00; /* Initial color (green) */
+    transition: background-color 0.5s ease;
+}
