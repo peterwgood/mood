@@ -3,8 +3,8 @@ const foodLog = document.getElementById('foodLog');
 const goodFoodButtons = document.getElementById('goodFoodButtons');
 const badFoodButtons = document.getElementById('badFoodButtons');
 
-const goodFoods = ['Banana', 'Beans', 'Water', 'Coffee', 'Nuts', 'Chicken', 'Steak','Pork', 'Good Sleep', 'Sunlight', 'Run', 'Productive', 'Social', 'Paw', 'Fun Todo', 'Weightloss', 'Walk', 'Nap', 'Beer', 'Insight', 'Flow', 'Sec', 'Challenged', 'Lawn', 'Full', 'Tabasco', 'Clean'];
-const badFoods = ['Chocolate', 'Soda', 'Fast food', 'Bad Sleep', 'Hungry', 'Conflict', 'Work-Stress', 'No Social', 'Thirsty', 'Sick', 'Hangover', 'Wan', 'Unchallenged', 'Sitting', 'TV', 'Missed Coffee', 'Sleepy'];
+const goodFoods = ['Banana', 'Beans', 'Water', 'Coffee', 'Nuts', 'Chicken', 'Steak','Pork', 'Good Sleep', 'Sunlight', 'Run', 'Productive', 'Social', 'Paw', 'Fun Todo', 'Weightloss', 'Walk', 'Nap', 'Beer', 'Insight', 'Flow', 'Sec', 'Challenged', 'Lawn', 'Full', 'Tabasco', 'Cleaning', 'Problem Solving', 'Out', 'Positive Thoughts'];
+const badFoods = ['Chocolate', 'Soda', 'Fast food', 'Bad Sleep', 'Hungry', 'Conflict', 'Work-Stress', 'No Social', 'Thirsty', 'Sick', 'Hangover', 'Negative Thoughts', 'Unchallenged', 'Sitting', 'TV', 'Missed Coffee', 'Sleepy'];
 
 // Create buttons for each food item
 goodFoods.forEach(food => createButton(food, 'good', goodFoodButtons));
@@ -18,10 +18,16 @@ updateMoodColor(); // New: Update the mood chart color after loading the food lo
 function createButton(food, mood, container) {
   const button = document.createElement('button');
   button.textContent = food;
-  button.className = 'btn btn-primary m-1'; // Add Bootstrap classes
+  button.className = 'btn m-1'; // Remove 'btn-primary'
+  if (mood === 'good') {
+    button.classList.add('btn-outline-success'); // Add 'btn-primary' for good food
+  } else if (mood === 'bad') {
+    button.classList.add('btn-outline-danger'); // Add 'btn-danger' for bad food
+  }
   button.addEventListener('click', () => addFoodEntry(food, mood));
   container.appendChild(button);
 }
+
 
 function updateMoodColor() {
     const totalGood = countFoods(goodFoods);
