@@ -8,7 +8,7 @@ const badFoods = ['chocolate', 'soda', 'fast food', 'processed snacks'];
 
 // Load food log from local storage (if available)
 const savedLog = JSON.parse(localStorage.getItem('foodLog')) || [];
-savedLog.forEach(entry => addToLog(entry.food, entry.mood));
+savedLog.forEach(entry => addToLog(entry.food, entry.mood, false));
 updateMoodColor(); // New: Update the mood chart color after loading the food log
 
 submitButton.addEventListener('click', addFoodEntry);
@@ -47,7 +47,7 @@ function calculateAverageColor(totalGood, totalBad) {
     return averageColor;
 }
 
-function addToLog(food, mood) {
+function addToLog(food, mood, save = true) {
     const li = document.createElement('li');
     li.textContent = `${food} (${mood})`;
     li.className = 'list-group-item d-flex justify-content-between align-items-center'; // Add Bootstrap classes
@@ -59,7 +59,9 @@ function addToLog(food, mood) {
     li.appendChild(deleteButton);
 
     foodLog.appendChild(li);
-    saveToLocalStorage(food, mood);
+    if (save) {
+        saveToLocalStorage(food, mood);
+    }
 }
 
 function addFoodEntry(event) {
@@ -69,6 +71,8 @@ function addFoodEntry(event) {
         if (event.key !== 'Enter') {
             return;
         }
+        // Prevent the default action of the Enter key
+        event.preventDefault();
     }
 
     const food = foodInput.value.toLowerCase();
