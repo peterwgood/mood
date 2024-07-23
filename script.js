@@ -3,10 +3,42 @@ const moodChart = document.getElementById('moodChart');
 const foodLog = document.getElementById('foodLog');
 const submitButton = document.getElementById('submitButton');
 
-const goodFoods = ['banana', 'beans', 'good sleep', 'nuts','full', 'water', 'coffee', 'nuts','protein', 'sunlight', 'praise', 'productive','socail', 'paw', 'Fun todo', 'weightloss', 'looking forward', 'nap', 'beer', 'insight', 'flow', 'sec', 'challenged', 'run'];
 
 
-const badFoods = ['chocolate', 'soda', 'fast food', 'bad sleep', 'hungry', 'conflict', 'workstress', 'conflict', 'no socail', 'thirty', 'fast food', 'Bad Sleep', 'sick', 'hangover', 'wan', 'unchallenged', 'sitting', 'To much TV'];
+
+const goodFoods = [
+  // Fruits
+  'banana',
+  // Legumes
+  'beans',
+  // Hydration
+  'water', 'coffee',
+  // Nuts & Proteins
+  'nuts', 'chicken', 'steak','pork',
+  // Positive Habits
+  'good sleep', 'sunlight', 'run', 'productive',
+  // Social & Emotional Well-being
+  'social', 'paw', 'Fun todo', 'weightloss', 'looking forward', 'nap', 'beer', 'insight', 'flow', 'sec', 'challenged', 'run',
+  // Other
+  'full', 'tabasco'
+];
+
+const badFoods = [
+  // Unhealthy Foods
+  'chocolate', 'soda', 'fast food',
+  // Negative Habits
+  'bad sleep', 'hungry', 'conflict', 'workstress', 'no social', 'thirsty', 'sick', 'hangover', 'wan', 'unchallenged', 'sitting',
+  // Other
+  'TV'
+];
+
+
+
+
+
+
+
+
 
 // Load food log from local storage (if available)
 const savedLog = JSON.parse(localStorage.getItem('foodLog')) || [];
@@ -56,7 +88,7 @@ function addToLog(food, mood, save = true) {
 
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
-    deleteButton.className = 'btn btn-danger'; // Add Bootstrap classes
+    deleteButton.className = 'btn btn-danger btn-sm'; // Add Bootstrap classes
     deleteButton.addEventListener('click', () => deleteLogEntry(li, food, mood));
     li.appendChild(deleteButton);
 
