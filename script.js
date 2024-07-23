@@ -1,4 +1,3 @@
-// JavaScript (script.js):
 const foodInput = document.getElementById('foodInput');
 const moodChart = document.getElementById('moodChart');
 const foodLog = document.getElementById('foodLog');
@@ -10,8 +9,10 @@ const badFoods = ['chocolate', 'soda', 'fast food', 'processed snacks'];
 // Load food log from local storage (if available)
 const savedLog = JSON.parse(localStorage.getItem('foodLog')) || [];
 savedLog.forEach(entry => addToLog(entry.food, entry.mood));
+updateMoodColor(); // New: Update the mood chart color after loading the food log
 
 submitButton.addEventListener('click', addFoodEntry);
+foodInput.addEventListener('keydown', addFoodEntry); // New: Add event listener for the Enter key
 
 function updateMoodColor() {
     const totalGood = countFoods(goodFoods);
@@ -61,7 +62,15 @@ function addToLog(food, mood) {
     saveToLocalStorage(food, mood);
 }
 
-function addFoodEntry() {
+function addFoodEntry(event) {
+    // Check if the event was triggered by a key press
+    if (event && event.type === 'keydown') {
+        // If the key pressed was not Enter, do nothing
+        if (event.key !== 'Enter') {
+            return;
+        }
+    }
+
     const food = foodInput.value.toLowerCase();
     if (food) {
         if (goodFoods.includes(food)) {
