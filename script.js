@@ -49,9 +49,11 @@ function calculateAverageColor(totalGood, totalBad) {
 function addToLog(food, mood) {
     const li = document.createElement('li');
     li.textContent = `${food} (${mood})`;
+    li.className = 'list-group-item d-flex justify-content-between align-items-center'; // Add Bootstrap classes
 
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
+    deleteButton.className = 'btn btn-danger'; // Add Bootstrap classes
     deleteButton.addEventListener('click', () => deleteLogEntry(li, food, mood));
     li.appendChild(deleteButton);
 
