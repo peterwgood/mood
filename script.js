@@ -3,10 +3,10 @@ const moodChart = document.getElementById('moodChart');
 const foodLog = document.getElementById('foodLog');
 const submitButton = document.getElementById('submitButton');
 
-const goodFoods = ['banana', 'beans', 'good sleep', 'nuts','full', 'water', 'coffee', 'nuts','protein', 'sunlight', 'praise', 'productive','socail', 'paw', 'Fun todo', 'weightloss', 'looking forward', 'nap'];
+const goodFoods = ['banana', 'beans', 'good sleep', 'nuts','full', 'water', 'coffee', 'nuts','protein', 'sunlight', 'praise', 'productive','socail', 'paw', 'Fun todo', 'weightloss', 'looking forward', 'nap', 'beer'];
 
 
-const badFoods = ['chocolate', 'soda', 'fast food', 'bad sleep', 'hungry', 'conflict', 'workstress', 'conflict', 'no socail', 'thirty', 'fast food', 'Bad Sleep', 'sick'];
+const badFoods = ['chocolate', 'soda', 'fast food', 'bad sleep', 'hungry', 'conflict', 'workstress', 'conflict', 'no socail', 'thirty', 'fast food', 'Bad Sleep', 'sick', 'hangover'];
 
 // Load food log from local storage (if available)
 const savedLog = JSON.parse(localStorage.getItem('foodLog')) || [];
