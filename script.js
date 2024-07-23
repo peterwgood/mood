@@ -1,52 +1,27 @@
-const foodInput = document.getElementById('foodInput');
 const moodChart = document.getElementById('moodChart');
 const foodLog = document.getElementById('foodLog');
-const submitButton = document.getElementById('submitButton');
+const goodFoodButtons = document.getElementById('goodFoodButtons');
+const badFoodButtons = document.getElementById('badFoodButtons');
 
+const goodFoods = ['banana', 'beans', 'water', 'coffee', 'nuts', 'chicken', 'steak','pork', 'good sleep', 'sunlight', 'run', 'productive', 'social', 'paw', 'Fun todo', 'weightloss', 'looking forward', 'nap', 'beer', 'insight', 'flow', 'sec', 'challenged', 'run', 'full', 'tabasco'];
+const badFoods = ['chocolate', 'soda', 'fast food', 'bad sleep', 'hungry', 'conflict', 'workstress', 'no social', 'thirsty', 'sick', 'hangover', 'wan', 'unchallenged', 'sitting', 'TV'];
 
-
-
-const goodFoods = [
-  // Fruits
-  'banana',
-  // Legumes
-  'beans',
-  // Hydration
-  'water', 'coffee',
-  // Nuts & Proteins
-  'nuts', 'chicken', 'steak','pork',
-  // Positive Habits
-  'good sleep', 'sunlight', 'run', 'productive',
-  // Social & Emotional Well-being
-  'social', 'paw', 'Fun todo', 'weightloss', 'looking forward', 'nap', 'beer', 'insight', 'flow', 'sec', 'challenged', 'run',
-  // Other
-  'full', 'tabasco'
-];
-
-const badFoods = [
-  // Unhealthy Foods
-  'chocolate', 'soda', 'fast food',
-  // Negative Habits
-  'bad sleep', 'hungry', 'conflict', 'workstress', 'no social', 'thirsty', 'sick', 'hangover', 'wan', 'unchallenged', 'sitting',
-  // Other
-  'TV'
-];
-
-
-
-
-
-
-
-
+// Create buttons for each food item
+goodFoods.forEach(food => createButton(food, 'good', goodFoodButtons));
+badFoods.forEach(food => createButton(food, 'bad', badFoodButtons));
 
 // Load food log from local storage (if available)
 const savedLog = JSON.parse(localStorage.getItem('foodLog')) || [];
 savedLog.forEach(entry => addToLog(entry.food, entry.mood, false));
 updateMoodColor(); // New: Update the mood chart color after loading the food log
 
-submitButton.addEventListener('click', addFoodEntry);
-foodInput.addEventListener('keydown', addFoodEntry); // New: Add event listener for the Enter key
+function createButton(food, mood, container) {
+  const button = document.createElement('button');
+  button.textContent = food;
+  button.className = 'btn btn-primary m-1'; // Add Bootstrap classes
+  button.addEventListener('click', () => addFoodEntry(food, mood));
+  container.appendChild(button);
+}
 
 function updateMoodColor() {
     const totalGood = countFoods(goodFoods);
@@ -98,30 +73,15 @@ function addToLog(food, mood, save = true) {
     }
 }
 
-function addFoodEntry(event) {
-    // Check if the event was triggered by a key press
-    if (event && event.type === 'keydown') {
-        // If the key pressed was not Enter, do nothing
-        if (event.key !== 'Enter') {
-            return;
-        }
-        // Prevent the default action of the Enter key
-        event.preventDefault();
-    }
-
-    const food = foodInput.value.toLowerCase();
-    if (food) {
-        if (goodFoods.includes(food)) {
-            addToLog(food, 'good');
-            foodInput.value = ''; // Clear input field
-            updateMoodColor(); // Update the mood chart color
-        } else if (badFoods.includes(food)) {
-            addToLog(food, 'bad');
-            foodInput.value = ''; // Clear input field
-            updateMoodColor(); // Update the mood chart color
-        } else {
-            alert('Please enter a valid food item (good or bad).');
-        }
+function addFoodEntry(food, mood) {
+    if (goodFoods.includes(food)) {
+        addToLog(food, 'good');
+        updateMoodColor(); // Update the mood chart color
+    } else if (badFoods.includes(food)) {
+        addToLog(food, 'bad');
+        updateMoodColor(); // Update the mood chart color
+    } else {
+        alert('Please enter a valid food item (good or bad).');
     }
 }
 
