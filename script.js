@@ -3,8 +3,25 @@ const foodLog = document.getElementById('foodLog');
 const goodFoodButtons = document.getElementById('goodFoodButtons');
 const badFoodButtons = document.getElementById('badFoodButtons');
 
-const goodFoods = ['Banana', 'Beans', 'Water', 'Coffee', 'Eggs', 'Yogurt', 'Pickles', 'Nuts', 'Nectarines', 'Chicken', 'Steak','Pork', 'Good Sleep', 'Sunlight', 'Run', 'Productive', 'Social', 'Paw IOI', 'Fun Todo', 'Weightloss', 'Walk', 'Nap', 'Beer', 'Insight', 'Flow', 'Sec', 'Challenged', 'Lawn', 'Full', 'Tabasco', 'Cleaning', 'Problem Solving', 'Out', 'Positive Thoughts', 'Massive Storms', 'Sports Team Winning', 'Friday', 'Saturday', 'Saving', 'Looking Forward to Something'];
-const badFoods = ['Starting Level','Chocolate', 'Soda', 'Fast food', 'Bad Sleep', 'Hungry', 'Conflict', 'Work-Stress', 'No Social', 'Thirsty', 'Sick', 'Hangover', 'Negative Thoughts', 'Unchallenged', 'Sitting', 'TV', 'Missed Coffee', 'Sleepy', 'Wife Angry', 'Kid Unhappy', 'Dreading Something', 'Monday', 'Tuesday', 'Surprise Bills', 'Wasting Money'];
+const goodFoods = [
+  // Food Items
+  'Banana', 'Beans', 'Water', 'Coffee', 'Eggs', 'Yogurt', 'Pickles', 'Nuts', 'Nectarines', 'Chicken', 'Steak','Pork', 'Beer', 'Tabasco', 'Healthy Salad', 'Mushrooms', 'Whole Grains', 'Fish Tacos', 
+
+  // Lifestyle Elements
+  'Good Sleep', 'Sunlight', 'Running', 'Productive', 'Social', 'Paw IOI', 'Fun Todo', 'Weightloss', 'Walk', 'Nap', 'Insight', 'Flow', 'Sec', 'Challenged', 'Lawn', 'Full', 'Cleaning', 'Problem Solving', 'Out', 'Positive Thoughts', 'Massive Storms', 'Sports Team Winning', 'Friday', 'Saturday', 'Saving', 'Looking Forward to Something'
+];
+
+
+const badFoods = [
+  // Negative Lifestyle Elements
+  'Starting Level', 'Bad Sleep', 'Hungry', 'Conflict', 'Work-Stress', 'No Social', 'Thirsty', 'Sick', 'Hangover', 'Negative Thoughts', 'Unchallenged', 'Sitting', 'TV', 'Missed Coffee', 'Sleepy', 'Wife Angry', 'Kid Unhappy', 'Dreading Something', 'Monday', 'Tuesday', 'Surprise Bills', 'Wasting Money',
+
+  // Unhealthy Food Choices
+  'Resturant Burger and Fries', 'Soda', ' Poorly Made Fast food', 'Over Eating'
+];
+
+
+
 
 // Create buttons for each food item
 goodFoods.forEach(food => createButton(food, 'good', goodFoodButtons));
