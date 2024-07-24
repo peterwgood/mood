@@ -3,8 +3,8 @@ const foodLog = document.getElementById('foodLog');
 const goodFoodButtons = document.getElementById('goodFoodButtons');
 const badFoodButtons = document.getElementById('badFoodButtons');
 
-const goodFoods = ['Banana', 'Beans', 'Water', 'Coffee', 'Eggs', 'Yogurt', 'Pickles', 'Nuts', 'Nectarines', 'Chicken', 'Steak','Pork', 'Good Sleep', 'Sunlight', 'Run', 'Productive', 'Social', 'Paw', 'Fun Todo', 'Weightloss', 'Walk', 'Nap', 'Beer', 'Insight', 'Flow', 'Sec', 'Challenged', 'Lawn', 'Full', 'Tabasco', 'Cleaning', 'Problem Solving', 'Out', 'Positive Thoughts', 'Massive Storm', 'Sport Team Winning', 'Friday', 'Saturday'];
-const badFoods = ['Starting Level','Chocolate', 'Soda', 'Fast food', 'Bad Sleep', 'Hungry', 'Conflict', 'Work-Stress', 'No Social', 'Thirsty', 'Sick', 'Hangover', 'Negative Thoughts', 'Unchallenged', 'Sitting', 'TV', 'Missed Coffee', 'Sleepy', 'Wife Angry', 'Kid Unhappy', 'Not Looking To Something', 'Monday', 'Tuesday'];
+const goodFoods = ['Banana', 'Beans', 'Water', 'Coffee', 'Eggs', 'Yogurt', 'Pickles', 'Nuts', 'Nectarines', 'Chicken', 'Steak','Pork', 'Good Sleep', 'Sunlight', 'Run', 'Productive', 'Social', 'Paw', 'Fun Todo', 'Weightloss', 'Walk', 'Nap', 'Beer', 'Insight', 'Flow', 'Sec', 'Challenged', 'Lawn', 'Full', 'Tabasco', 'Cleaning', 'Problem Solving', 'Out', 'Positive Thoughts', 'Massive Storms', 'Sports Team Winning', 'Friday', 'Saturday', 'Saving'];
+const badFoods = ['Starting Level','Chocolate', 'Soda', 'Fast food', 'Bad Sleep', 'Hungry', 'Conflict', 'Work-Stress', 'No Social', 'Thirsty', 'Sick', 'Hangover', 'Negative Thoughts', 'Unchallenged', 'Sitting', 'TV', 'Missed Coffee', 'Sleepy', 'Wife Angry', 'Kid Unhappy', 'Not Looking To Something', 'Monday', 'Tuesday', 'Surprise Bills', 'Wasting Money'];
 
 // Create buttons for each food item
 goodFoods.forEach(food => createButton(food, 'good', goodFoodButtons));
