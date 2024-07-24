@@ -8,7 +8,7 @@ const goodFoods = [
  'Coffee', 'Small Cup of Tap Water & Gatorade', 'Tasbasco Beans', 'Bananas', 'Apples', 'Yogurt', 'Tabasco Advocado Eggs', 'Pickles', 'Nuts', 'Steak Salad Rice', 'Chicken Ceasar Salad', 'Fish Tacos', 'Bread', 'Cottage Pie', 'Spaghetti Bolognese', 'Chick-Fil-A', 'Salseritas',
 
   // Lifestyle Elements
-  'Sleep', 'Running & Music', 'Flow', 'Drinking & TV','Resolving Conflicts', 'Trouble Shooting Problems', 'Insights', 'Sunlight', 'Organised', 'Having My Work Done', 'WhatsApp Buddies', 'Mastery', 'PAW IOI', 'Nap', 'Sec', 'Being Challenged', 'Doing the Task at Hand Well', 'Not Being Hungry', 'Cleaning', 'Out', 'Massive Storms', 'Friday', 'Saturday', 'Saving', 'Looking Forward to Something', 'Making Money', 'Meeting New People'
+  'Sleep', 'Running & Music', 'Flow', 'Drinking & TV','Resolving Conflicts', 'Catch & Games', 'Trouble Shooting Problems', 'Insights', 'Sunlight', 'Organised', 'Having My Work Done', 'WhatsApp Buddies', 'Mastery', 'PAW IOI', 'Nap', 'Sec', 'Being Challenged', 'Doing the Task at Hand Well', 'Not Being Hungry', 'Cleaning', 'Out', 'Massive Storms', 'Friday', 'Saturday', 'Saving', 'Looking Forward to Something', 'Making Money', 'Meeting New People'
 ];
 
 
