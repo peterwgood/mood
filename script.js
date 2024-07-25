@@ -35,9 +35,9 @@ badFoods.forEach(food => createButton(food, 'bad', badFoodButtons));
 const savedLog = JSON.parse(localStorage.getItem('foodLog')) || [];
 savedLog.forEach(entry => {
   addToLog(entry.food, entry.mood, false);
-  if (entry.mood === 'Pos') {
+  if (entry.mood === 'good') {
     goodCount++;
-  } else if (entry.mood === 'Neg') {
+  } else if (entry.mood === 'bad') {
     badCount++;
   }
 });
