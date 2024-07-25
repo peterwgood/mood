@@ -4,11 +4,11 @@ const goodFoodButtons = document.getElementById('goodFoodButtons');
 const badFoodButtons = document.getElementById('badFoodButtons');
 
 const goodFoods = [
- 'Good Sleep', 'Nap', 'Coffee', 'Water/Gatorade', 'Beans', 'Bananas', 'Apples', 'Yogurt', 'Advocado', 'Eggs', 'Pickles', 'Nuts', 'Sunlight', 'Beer', 'Sec', 'Protein', 'Running'
+ 'Good Sleep', 'Nap', 'Physical Activity', 'Water/Gatorade', 'Sunlight', 'Beans', 'Bananas', 'Apples', 'Yogurt', 'Milk', 'Advocado', 'Eggs', 'Pickles', 'Nuts', 'Protein'
 ];
 
 const badFoods = [
-   'Bad Sleep', 'Hungry', 'Dyhydrated', 'Sick', 'Hangover', 'Coffeeless', 'Lack of Protein', 'No Physical Activity'
+   'Bad Sleep', 'Dyhydrated', 'Hungry', 'Hangover', 'Lack of Caffiene', 'Too Much Caffiene', 'Lack of Protein', 'No Physical Activity', 'Sick'
 ];
 
 let goodCount = 0;
