@@ -4,135 +4,105 @@ const goodFoodButtons = document.getElementById('goodFoodButtons');
 const badFoodButtons = document.getElementById('badFoodButtons');
 
 const goodFoods = [
-  // Food Items
- 'Coffee', 'Water Gatorade', 'Tasbasco Beans', 'Bananas', 'Apples', 'Yogurt', 'Tabasco Advocado Eggs', 'Pickles', 'Nuts', 'Steak Salad Rice', 'Chicken Ceasar', 'Fish Tacos', 'Bread', 'Cottage Pie', 'Spaghetti Bolognese', 'Chick-Fil-A', 'Salseritas', 'Indian Dish',
-
-  // Lifestyle Elements
-  'Sleep', 'Running & Music', 'Flow', 'Drinking & TV','Resolving Conflicts', 'Catch & Games', 'Trouble Shooting Problems', 'Insights', 'Being Outside', 'Organised', 'Having My Work Done', 'WhatsApp Buddies', 'Mastery', 'PAW IOI', 'Nap', 'Sec', 'Being Challenged', 'Doing the Task at Hand Well', 'Not Being Hungry', 'Cleaning', 'Out', 'Massive Storms', 'Friday', 'Saturday', 'Saving', 'Looking Forward to Something', 'Making Money', 'Meeting New People', 'Somewhere New'
+ 'Good Sleep', 'Nap', 'Coffee', 'Water/Gatorade', 'Beans', 'Bananas', 'Apples', 'Yogurt', 'Advocado', 'Eggs', 'Pickles', 'Nuts', 'Sunlight', 'Beer', 'Sec', 'Protein'
 ];
-
 
 const badFoods = [
-  // Negative Lifestyle Elements
-  'Starting Level', 'Bad Sleep', 'Hungry', 'Conflict', 'Work-Stress', 'No Social', 'Thirsty', 'Sick', 'Hangover', 'Negative Thoughts', 'Unchallenged', 'Sitting', 'TV', 'Missed Coffee', 'Sleepy', 'Wife Angry', 'Kid Unhappy', 'Dreading Something', 'Monday', 'Tuesday', 'Surprise Bills', 'Wasting Money',
-
-  // Unhealthy Food Choices
-  'Resturant Burger and Fries', 'Soda', ' Poorly Made Fast food', 'Over Eating'
+   'Bad Sleep', 'Hungry', 'Dyhydrated', 'Sick', 'Hangover', 'Coffeeless', 'Lack of Protein'
 ];
 
+let goodCount = 0;
+let badCount = 0;
 
+const chart = new Chart(moodChart, {
+  type: 'pie',
+  data: {
+    labels: ['Good', 'Bad'],
+    datasets: [{
+      data: [goodCount, badCount],
+      backgroundColor: ['#28a745', '#dc3545']
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false
+  }
+});
 
-
-// Create buttons for each food item
 goodFoods.forEach(food => createButton(food, 'good', goodFoodButtons));
 badFoods.forEach(food => createButton(food, 'bad', badFoodButtons));
 
-// Load food log from local storage (if available)
 const savedLog = JSON.parse(localStorage.getItem('foodLog')) || [];
-savedLog.forEach(entry => addToLog(entry.food, entry.mood, false));
-updateMoodColor(); // New: Update the mood chart color after loading the food log
+savedLog.forEach(entry => {
+  addToLog(entry.food, entry.mood, false);
+  if (entry.mood === 'Pos') {
+    goodCount++;
+  } else if (entry.mood === 'Neg') {
+    badCount++;
+  }
+});
+updateMoodChart();
 
 function createButton(food, mood, container) {
   const button = document.createElement('button');
   button.textContent = food;
-  button.className = 'btn m-1'; // Remove 'btn-primary'
-  if (mood === 'good') {
-    button.classList.add('btn-outline-success'); // Add 'btn-primary' for good food
-  } else if (mood === 'bad') {
-    button.classList.add('btn-outline-danger'); // Add 'btn-danger' for bad food
-  }
+  button.className = 'btn m-1';
+  button.classList.add(mood === 'good' ? 'btn-outline-success' : 'btn-outline-danger');
   button.addEventListener('click', () => addFoodEntry(food, mood));
   container.appendChild(button);
 }
 
-
-function updateMoodColor() {
-    const totalGood = countFoods(goodFoods);
-    const totalBad = countFoods(badFoods);
-    let averageColor;
-
-    if (totalGood === 0 && totalBad === 0) {
-        averageColor = { r: 255, g: 0, b: 0 }; // Red
-    } else {
-        averageColor = calculateAverageColor(totalGood, totalBad);
-    }
-
-    moodChart.style.backgroundColor = `rgb(${averageColor.r}, ${averageColor.g}, ${averageColor.b})`;
-}
-
-
-function countFoods(foodArray) {
-    const foodEntries = Array.from(foodLog.querySelectorAll('li'));
-    let count = 0;
-    foodArray.forEach(food => {
-        foodEntries.forEach(entry => {
-            if (entry.textContent.includes(food)) {
-                count++;
-            }
-        });
-    });
-    return count;
-}
-
-function calculateAverageColor(totalGood, totalBad) {
-    
-    const badColor = { r: 255, g: 0, b: 0 }; // Red
-	const goodColor = { r: 0, g: 255, b: 0 }; // Green
-
-    const averageColor = {
-        r: Math.round((goodColor.r * totalGood + badColor.r * totalBad) / (totalGood + totalBad)),
-        g: Math.round((goodColor.g * totalGood + badColor.g * totalBad) / (totalGood + totalBad)),
-        b: Math.round((goodColor.b * totalGood + badColor.b * totalBad) / (totalGood + totalBad)),
-    };
-
-    return averageColor;
+function updateMoodChart() {
+  chart.data.datasets[0].data = [goodCount, badCount];
+  chart.update();
 }
 
 function addToLog(food, mood, save = true) {
-    const li = document.createElement('li');
-    li.textContent = mood ? `${food} ${mood}` : `${food}`; // Check if mood is defined
-    li.className = 'list-group-item d-flex justify-content-between align-items-center'; // Add Bootstrap classes
+  const li = document.createElement('li');
+  li.textContent = `${food} (${mood})`;
+  li.className = 'list-group-item d-flex justify-content-between align-items-center';
 
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete';
-    deleteButton.className = 'btn btn-danger btn-sm'; // Add Bootstrap classes
-    deleteButton.addEventListener('click', () => deleteLogEntry(li, food, mood));
-    li.appendChild(deleteButton);
+  const deleteButton = document.createElement('button');
+  deleteButton.textContent = 'Delete';
+  deleteButton.className = 'btn btn-danger btn-sm';
+  deleteButton.addEventListener('click', () => deleteLogEntry(li, food, mood));
+  li.appendChild(deleteButton);
 
-    foodLog.appendChild(li);
-    if (save) {
-        saveToLocalStorage(food, mood);
-    }
+  foodLog.appendChild(li);
+  if (save) {
+    saveToLocalStorage(food, mood);
+  }
 }
-
 
 function addFoodEntry(food, mood) {
-    if (goodFoods.includes(food)) {
-        addToLog(food); // Only pass the food item
-        updateMoodColor(); // Update the mood chart color
-    } else if (badFoods.includes(food)) {
-        addToLog(food); // Only pass the food item
-        updateMoodColor(); // Update the mood chart color
-    } else {
-        alert('Please enter a valid food item (good or bad).');
-    }
+  if (goodFoods.includes(food)) {
+    goodCount++;
+  } else if (badFoods.includes(food)) {
+    badCount++;
+  }
+  addToLog(food, mood);
+  updateMoodChart();
 }
 
-
 function deleteLogEntry(li, food, mood) {
-    foodLog.removeChild(li);
-    removeFromLocalStorage(food, mood);
-    updateMoodColor(); // Update color after deletion
+  foodLog.removeChild(li);
+  if (mood === 'good') {
+    goodCount--;
+  } else if (mood === 'bad') {
+    badCount--;
+  }
+  removeFromLocalStorage(food, mood);
+  updateMoodChart();
 }
 
 function saveToLocalStorage(food, mood) {
-    const existingLog = JSON.parse(localStorage.getItem('foodLog')) || [];
-    existingLog.push({ food, mood });
-    localStorage.setItem('foodLog', JSON.stringify(existingLog));
+  const existingLog = JSON.parse(localStorage.getItem('foodLog')) || [];
+  existingLog.push({ food, mood });
+  localStorage.setItem('foodLog', JSON.stringify(existingLog));
 }
 
 function removeFromLocalStorage(food, mood) {
-    const existingLog = JSON.parse(localStorage.getItem('foodLog')) || [];
-    const updatedLog = existingLog.filter(entry => !(entry.food === food && entry.mood === mood));
-    localStorage.setItem('foodLog', JSON.stringify(updatedLog));
+  const existingLog = JSON.parse(localStorage.getItem('foodLog')) || [];
+  const updatedLog = existingLog.filter(entry => !(entry.food === food && entry.mood === mood));
+  localStorage.setItem('foodLog', JSON.stringify(updatedLog));
 }
